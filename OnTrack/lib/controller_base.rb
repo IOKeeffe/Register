@@ -9,6 +9,7 @@ class ControllerBase
   # Setup the controller
   def initialize(req, res)
     @req, @res = req, res
+    @already_built_response = false
   end
 
   # Helper method to alias @already_built_response
@@ -33,7 +34,7 @@ class ControllerBase
     raise 'double render error' if already_built_response?
 
     @res.write(content)
-    @res['content_type'] = content_type
+    @res['Content-Type'] = content_type
 
     @already_built_response = true;
   end
